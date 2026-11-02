@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+.DS_Store
+# datasets are linked in the README (not committed); small samples are allowed
+data/*
+!data/README.md
+!data/sample_*.csv
