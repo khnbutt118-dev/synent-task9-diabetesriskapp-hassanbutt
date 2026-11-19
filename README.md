@@ -1,74 +1,72 @@
-<p align="center"><img src="https://raw.githubusercontent.com/khnbutt118-dev/khnbutt118-dev/main/assets/medical-ai-banner.svg" alt="Hassan Butt — Pharmacy meets Artificial Intelligence" width="100%"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/khnbutt118-dev/khnbutt118-dev/main/assets/medical-ai-banner.svg" width="100%" alt="Hassan Butt — Pharmacy meets Artificial Intelligence"></p>
+<p align="center"><img src="https://img.shields.io/badge/Synent%20Technologies-Internship%20Task%209-087EAD?style=for-the-badge"><img src="https://img.shields.io/badge/ML-Classification-155E9A?style=for-the-badge"><img src="https://img.shields.io/badge/App-Streamlit-0B719E?style=for-the-badge"></p>
+<p align="center"><a href="https://github.com/khnbutt118-dev">← Profile</a> · <a href="https://hassanbuttportfolio.vercel.app/">Portfolio</a> · <a href="https://www.linkedin.com/in/hassan-butt-ab0036334/">LinkedIn</a></p>
 
-<p align="center"><a href="https://github.com/khnbutt118-dev">← Back to GitHub profile</a> · <a href="https://hassanbuttportfolio.vercel.app/">Portfolio</a> · <a href="https://www.linkedin.com/in/hassan-butt-ab0036334/">LinkedIn</a></p>
+# 🩺 Diabetes Risk Screening App
+**End-to-end machine-learning demo · Pima Indians Diabetes Database**
 
----
+> Educational screening demonstration only — **not a medical diagnostic tool**.
 
-# End-to-End Project: Diabetes Risk Screening App
+<table>
+<tr><td align="center"><h2>768</h2><sub>Rows analysed</sub></td><td align="center"><h2>0.813</h2><sub>Test ROC-AUC</sub></td><td align="center"><h2>0.704</h2><sub>Test recall</sub></td><td align="center"><h2>0.734</h2><sub>Test accuracy</sub></td></tr>
+</table>
 
-> Synent Technologies Data Science Internship | Task 9 (Advanced level) | Author: Hassan Butt
+## ✨ At a glance
 
-## Problem statement
-Build a complete data-science project: collect, clean, explore, model and deploy a diabetes risk screening demo.
+This project takes a tabular health dataset through cleaning, exploratory analysis, model comparison and a Streamlit interface. The selected model was Logistic Regression based on cross-validated ROC-AUC.
 
-## Dataset details
-- **Dataset:** Pima Indians Diabetes Database
-- **Source:** https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database
-- **Size used:** 768 rows x 9 columns
+## 📊 Model evaluation
 
-## Approach
-1. Data collection from the Pima Indians Diabetes dataset
-2. Cleaning: impossible zeros treated as missing, imputed inside the pipeline (no leakage)
-3. EDA: class balance, distributions by outcome, correlation heatmap
-4. Model building with class weighting and 5-fold stratified cross-validation (Logistic Regression vs Random Forest)
-5. Deployment with Streamlit: user input produces a prediction and risk band
+<p align="center"><img src="outputs/model_evaluation.png" alt="Model evaluation results" width="88%"></p>
 
-## Results
-| Metric | Value |
-|---|---|
-| Best model | Logistic Regression |
-| Test ROC-AUC | 0.813 |
-| Test recall | 0.704 |
-| Test accuracy | 0.734 |
-| Patients | 768 |
+| Test metric | Result |
+|:--|--:|
+| Best model | **Logistic Regression** |
+| ROC-AUC | **0.813** |
+| Recall | **0.704** |
+| Accuracy | **0.734** |
+| Dataset size | **768 rows** |
 
-**Key insights**
+## 🔍 What the data showed
 
-- 35% of patients in the data have diabetes, so class weighting and recall were used to avoid missing positive cases.
-- Zeros in Glucose, BloodPressure, SkinThickness, Insulin, BMI are biologically implausible placeholders for missing values, so they were treated as missing and imputed with medians inside the pipeline.
-- Logistic Regression gave the best cross-validated ROC-AUC and reached test recall 0.704 and ROC-AUC 0.813.
-- The most influential factors were Glucose, BMI, Pregnancies.
-- This is an educational screening demo, not a medical diagnosis tool.
+<table>
+<tr><td width="33%"><b>Glucose</b><br><sub>Strong predictive signal in this dataset</sub></td><td width="33%"><b>BMI</b><br><sub>Among the influential model features</sub></td><td width="33%"><b>Pregnancies</b><br><sub>Also influential in the fitted model</sub></td></tr>
+</table>
+<p align="center"><img src="outputs/eda_correlation_heatmap.png" alt="EDA correlation heatmap" width="72%"></p>
+<p align="center"><img src="outputs/eda_boxplots_by_outcome.png" alt="Feature distributions by outcome" width="72%"></p>
 
-**Figures**
+## 🧹 Data preparation
 
-![model_evaluation.png](outputs/model_evaluation.png)
-![eda_correlation_heatmap.png](outputs/eda_correlation_heatmap.png)
-![eda_boxplots_by_outcome.png](outputs/eda_boxplots_by_outcome.png)
+- Treated biologically implausible zero values in Glucose, BloodPressure, SkinThickness, Insulin and BMI as missing.
+- Performed median imputation inside the modelling pipeline to avoid leakage.
+- Compared Logistic Regression and Random Forest with class weighting and stratified 5-fold cross-validation.
 
-**Other output files:** `model/model.joblib`, `model/feature_info.json`, `cross_validation_results.csv`, `test_metrics.json`, `app.py`
+## ▶️ Run locally
 
-## How to run
 ```bash
 pip install -r requirements.txt
 python main.py
 streamlit run app.py
 ```
 
-## Deployment
-Deploy for free on Streamlit Community Cloud: push this repository to GitHub, choose the repo, set the main file to `app.py`.
+## 🗂️ Repository contents
 
-> Educational demo only. Not a medical diagnostic tool.
+| Path | Purpose |
+|:--|:--|
+| `main.py` | Analysis and modelling pipeline |
+| `app.py` | Streamlit demo |
+| `data/` | Dataset instructions |
+| `outputs/` | Figures and reports |
+| `model/` | Saved model and feature metadata |
 
-## Project structure
-```
-main.py            # full analysis / pipeline
-app.py             # Streamlit app
-requirements.txt
-data/              # dataset (see data/README.md)
-outputs/           # figures, tables and reports
-model/             # trained model + feature info
-```
+<details>
+<summary><b>Dataset and methodology</b></summary>
 
-## Academic integrity
-All analysis code and write-ups in this repository were written by the author. The dataset belongs to its original creators (see link above).
+- Dataset: [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database)
+- 768 rows × 9 columns
+- 35% of records in the dataset have diabetes.
+- The pipeline compares Logistic Regression and Random Forest using stratified cross-validation.
+</details>
+
+---
+<p align="center"><b>Responsible ML:</b> model outputs are estimates from a historical dataset and must not be used to diagnose, treat or make individual clinical decisions.</p>
